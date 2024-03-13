@@ -1,0 +1,44 @@
+{% extends "base.html" %} <!-- Hérite du modèle de base pour inclure des éléments communs de style et de navigation. -->
+
+{% block content %} <!-- Début du bloc de contenu spécifique à cette page. -->
+<div class="container">
+    <h1>Mes transcriptions</h1> <!-- Titre de la page. -->
+    {% if transcriptions|length > 0 %} <!-- Vérifie s'il y a des transcriptions à afficher. -->
+    <div class="transcriptions-container"> <!-- Conteneur pour les transcriptions. -->
+        {% for transcription in transcriptions %} <!-- Boucle à travers chaque transcription disponible. -->
+        <div class="transcription-item"> <!-- Bloc pour une transcription individuelle. -->
+            <h3>{{ transcription.audio_filename.split('.')[0] }}</h3>
+
+            <!-- Affiche le nom du fichier audio sans son extension. -->
+            <p>Date: {{ transcription.created_at.strftime('%d/%m/%Y') }}</p>
+
+            <!-- Affiche la date de création de la transcription. -->
+            <p>Heure: {{ transcription.created_at.strftime('%H:%M') }}</p>
+            
+            <!-- Affiche l'heure de création de la transcription. -->
+            <div class="transcription-actions"> <!-- Conteneur pour les actions possibles sur la transcription. -->
+                <a href="{{ url_for('download', transcription_id=transcription.id, file_type='audio') }}"
+                    class="btn btn-download">Télécharger l'Audio</a> <!-- Lien pour télécharger le fichier audio. -->
+
+                <a href="{{ url_for('download', transcription_id=transcription.id, file_type='text') }}"
+                    class="btn btn-download">Télécharger le Texte</a>
+                <!-- Lien pour télécharger le fichier texte de la transcription. -->
+
+                <a href="{{ url_for('convert_to_word', transcription_id=transcription.id) }}"
+                    class="btn btn-download">Télécharger en Word</a>
+                <!-- Lien pour télécharger la transcription au format Word. -->
+
+                <form action="{{ url_for('delete_transcription', transcription_id=transcription.id) }}" method="post"
+                    onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette transcription ?');">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                    <!-- Bouton pour supprimer la transcription. -->
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>Aucune transcription disponible.</p> <!-- Message affiché s'il n'y a pas de transcriptions. -->
+    {% endif %}
+</div>
+{% endblock %} <!-- Fin du bloc de contenu spécifique. -->

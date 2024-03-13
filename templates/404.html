@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>404 Page non trouvé</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/CASE_Logo_2018.png/1280px-CASE_Logo_2018.png">
+</head>
+
+<body>
+    <div class="frem">
+        <p>404</p>
+        <h2>On dirait que vous vous êtes perdu</h2>
+        <h5>La page que vous recherchez n'est pas disponible</h5>
+        <a href="{{ url_for('index') }}">Retour à l'accueil</a>
+    </div>
+</body>
+
+</html>

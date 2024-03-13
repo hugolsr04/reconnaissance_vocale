@@ -1,0 +1,38 @@
+{% extends "base.html" %} <!-- Hérite du modèle de base pour inclure les éléments communs. -->
+
+{% block content %} <!-- Début du bloc de contenu spécifique à cette page. -->
+<div class="container">
+    <h1>Créer un nouvel utilisateur</h1> <!-- Titre de la page. -->
+    <form action="{{ url_for('create_user') }}" method="post" class="form-container">
+        <!-- Formulaire de création d'utilisateur, qui envoie les données à la route 'create_user' de l'application Flask. -->
+        <div class="form-group"> <!-- Groupe de formulaire pour le nom et prénom. -->
+            <label for="username">Nom et prénom :</label> <!-- Étiquette pour le champ de nom et prénom. -->
+            <input type="text" id="username" name="username" required class="form-control" placeholder="Nom et prénom de l'utilisateur">
+            <!-- Champ de saisie pour le nom et prénom. -->
+        </div>
+        <div class="form-group"> <!-- Groupe de formulaire pour l'email. -->
+            <label for="email">Email :</label> <!-- Étiquette pour le champ d'email. -->
+            <input type="email" id="email" name="email" required class="form-control" placeholder="Email de l'utilisateur">
+            <!-- Champ de saisie pour l'email. -->
+        </div>
+        <div class="form-group"> <!-- Groupe de formulaire pour le mot de passe. -->
+            <label for="password">Mot de passe :</label> <!-- Étiquette pour le champ de mot de passe. -->
+            <input type="password" id="password" name="password" required class="form-control" placeholder="Mot de passe de l'utilisateur">
+            <!-- Champ de saisie pour le mot de passe. -->
+        </div>
+        <div class="form-group">
+            <label for="transcriptions_limit">Limite de transcriptions :</label>
+            <input type="number" id="transcriptions_limit" name="transcriptions_limit" class="form-control" min="1"
+                value="4">
+        </div>
+        <div class="form-check"> <!-- Groupe de formulaire pour la case à cocher d'administrateur. -->
+            <input type="checkbox" id="is_admin" name="is_admin" class="form-check-input">
+            <!-- Case à cocher pour définir si l'utilisateur est un administrateur. -->
+            <label for="is_admin" class="form-check-label">Administrateur</label>
+            <!-- Étiquette pour la case à cocher d'administrateur. -->
+        </div>
+        <button type="submit" class="btn btn-primary">Créer l'utilisateur</button>
+        <!-- Bouton pour soumettre le formulaire. -->
+    </form>
+</div>
+{% endblock %} <!-- Fin du bloc de contenu spécifique. -->

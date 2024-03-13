@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+<!--Hérite de la structure et des éléments de base.html-->
+
+{% block content %}
+<!--Définit le contenu spécifique à cette page, qui sera inséré dans le bloc 'content' de base.html-->
+<div class="container">
+    <h1>Liste des utilisateurs</h1>
+    <!--Titre de la page affichant la liste des utilisateurs-->
+    <div class="search-container">
+        {# Conteneur pour le champ de recherche permettant de filtrer les utilisateurs #}
+        <form action="{{ url_for('list_users') }}" method="get" class="search-form">
+            <!--Formulaire de recherche envoyant les données à la même route Flask 'list_users' via une requête GET-->
+            <input type="text" name="search" placeholder="Filtrez par ID, nom ou email"
+                value="{{ request.args.get('search', '') }}" class="search-input">
+            <!--Champ de texte pour saisir le terme de recherche avec la valeur actuelle reprise de l'URL si présente-->
+            <button type="submit" class="search-button">Rechercher</button>
+            <!--Bouton pour soumettre la recherche-->
+        </form>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom et prénom</th>
+                <th>Email</th>
+                <th>Admin</th>
+                <th>Transcriptions utilisées</th>
+                <th>Modifier le mot de passe</th>
+                <th>Ajouter des transcriptions</th>
+                <th>Actions</th>
+            </tr>
+            <!--En-tête du tableau définissant les colonnes pour l'affichage des informations des utilisateurs-->
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <!--Boucle sur chaque utilisateur fourni par le serveur Flask pour afficher leurs informations-->
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ 'Oui' if user.is_admin else 'Non' }}</td>
+                <!--Affichage conditionnel pour indiquer si l'utilisateur est admin ou non-->
+                <td>{{ user.transcriptions_count }} / {{ user.transcriptions_limit }}</td>
+                <!--Affiche le nombre de transcriptions utilisées et la limite-->
+                <td>
+                    <form action="{{ url_for('admin_change_password', user_id=user.id) }}" method="post">
+                        <input type="password" name="new_password" placeholder="Nouveau mot de passe" required
+                            style="margin-right: 5px;">
+                        <button type="submit" class="btn btn-primary">Modifier</button>
+                        <!--Formulaire pour changer le mot de passe de l'utilisateur-->
+                    </form>
+                </td>
+                <td>
+                    <form action="{{ url_for('add_transcriptions', user_id=user.id) }}" method="post">
+                        <input type="number" name="additional_transcriptions" min="1" placeholder="Nombre" required
+                            style="margin-right: 5px;">
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                        <!--Formulaire pour ajouter des transcriptions à l'utilisateur-->
+                    </form>
+                </td>
+                <td>
+                    <a href="{{ url_for('delete_user', user_id=user.id) }}" class="btn btn-danger"
+                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">Supprimer</a>
+                    <!--Lien pour supprimer l'utilisateur après confirmation-->
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

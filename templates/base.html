@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Transcription vocale</title> <!-- Titre de la page affiché dans l'onglet du navigateur. -->
+    <link rel="stylesheet" href="/static/css/style.css"> <!-- Lie le fichier CSS pour styliser la page. -->
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/CASE_Logo_2018.png/1280px-CASE_Logo_2018.png">
+</head>
+
+<body data-user-id="{{ current_user.id if current_user.is_authenticated else '0' }}">
+    <div class="sidebar"> <!-- Barre latérale pour la navigation. -->
+        {% if current_user.is_authenticated %} <!-- Affiche ces liens si l'utilisateur est authentifié. -->
+        <a href="{{ url_for('index') }}">Accueil</a> <!-- Lien vers la page d'accueil. -->
+
+        <a href="{{ url_for('my_transcriptions') }}">Mes transcriptions</a>
+        <!-- Lien vers la page des transcriptions de l'utilisateur. -->
+
+        <a href="{{ url_for('logout') }}">Déconnexion</a> <!-- Lien pour se déconnecter. -->
+
+        {% if current_user.is_admin %} <!-- Affiche ces liens uniquement pour les administrateurs. -->
+        <a href="{{ url_for('list_users') }}">Liste des utilisateurs</a>
+        <!-- Lien vers la page de gestion des utilisateurs. -->
+
+        <a href="{{ url_for('create_user') }}">Créer un utilisateur</a>
+        <!-- Lien vers la page de création d'un nouvel utilisateur. -->
+        {% endif %}
+        {% else %}
+        <!-- Vous pouvez ajouter ici du contenu pour les utilisateurs non authentifiés si nécessaire. -->
+        {% endif %}
+    </div>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+        <!-- Zone de contenu principal qui sera remplacée par le contenu spécifique de chaque page. -->
+    </div>
+    <script src="/static/js/script.js"></script>
+    <!-- Lie le fichier JavaScript pour ajouter des fonctionnalités interactives. -->
+</body>
+
+</html>

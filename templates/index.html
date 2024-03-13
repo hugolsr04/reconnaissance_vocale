@@ -1,0 +1,39 @@
+{% extends "base.html" %} <!-- Hérite du modèle de base pour inclure les éléments de navigation et de style communs. -->
+
+{% block content %} <!-- Début du bloc de contenu spécifique à cette page. -->
+<div class="container">
+    <h1>Transcrire un fichier audio</h1> <!-- Titre de la page. -->
+    <form id="transcriptionForm" method="post" enctype="multipart/form-data">
+        <!-- Formulaire pour l'envoi du fichier audio à transcrire. L'attribut enctype est important pour le téléchargement de fichiers. -->
+        <div class="form-group"> <!-- Groupe de formulaire pour la sélection du modèle de transcription. -->
+            <label for="model">Choisissez un modèle :</label> <!-- Étiquette pour le champ de sélection du modèle. -->
+            <select name="model" id="model"> <!-- Menu déroulant pour choisir le modèle de transcription. -->
+                <option value="tiny">Tiny</option>
+                <option value="base">Base</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option> <!-- Option Medium du modèle, sélectionnée par défaut. -->
+                <option value="large" selected>Large</option>
+            </select>
+        </div>
+        <div class="form-group"> <!-- Groupe de formulaire pour la sélection de la langue du fichier audio. -->
+            <label for="language">Langue du fichier audio :</label>
+            <!-- Étiquette pour le champ de sélection de la langue. -->
+            <select name="language" id="language"> <!-- Menu déroulant pour choisir la langue. -->
+                <option value="fr" selected>Français</option> <!-- Option Français, sélectionnée par défaut. -->
+                <option value="en">Anglais</option>
+                <option value="es">Espagnol</option>
+            </select>
+        </div>
+        <div class="form-group"> <!-- Groupe de formulaire pour le téléchargement du fichier audio. -->
+            <label for="audio_file">Fichier audio :</label>
+            <!-- Étiquette pour le champ de téléchargement du fichier audio. -->
+            <input type="file" name="audio_file" id="audio_file" required>
+            <!-- Champ pour sélectionner le fichier audio à transcrire. -->
+        </div>
+        <button type="submit">Transcrire</button>
+        <!-- Bouton pour soumettre le formulaire et démarrer la transcription. -->
+    </form>
+    <div id="loadingIndicator" class="spinner" style="display: none;"></div>
+    <!-- Indicateur de chargement qui s'affiche pendant la transcription. -->
+</div>
+{% endblock %} <!-- Fin du bloc de contenu spécifique. -->

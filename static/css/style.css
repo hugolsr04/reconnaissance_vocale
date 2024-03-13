@@ -1,0 +1,507 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.sidebar {
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    background-color: #343a40;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar a:hover {
+    background-color: #007bff;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.container {
+    flex-grow: 1;
+    width: 100%;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="file"],
+.form-group select {
+    border: 1px solid #ccc;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#downloadContainer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#downloadLink {
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+#downloadLink:hover {
+    background-color: #218838;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #09f;
+    animation: spin 1s ease infinite;
+    margin: 20px auto;
+    display: block;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .form-group input[type="file"],
+    .form-group select,
+    button {
+        padding: 8px;
+    }
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-download {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 10px;/
+}
+
+.btn-download:hover {
+    background-color: #218838;
+}
+
+.transcription-item .btn-download+.btn-danger,
+.transcription-item .btn-primary+.btn-danger {
+    margin-top: 10px;
+}
+
+.transcription-item a.btn,
+.transcription-item button.btn {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+}
+
+th {
+    background-color: #8c9a8e;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+tr:last-of-type {
+    border-bottom: 2px solid #8c9a8e;
+}
+
+tr:hover {
+    background-color: #f2f2f2;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background 0.3s ease;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.form-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.form-check {
+    margin-bottom: 15px;
+}
+
+.form-check-input {
+    margin-right: 5px;
+}
+
+.form-check-label {
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.transcriptions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.transcription-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.transcription-item h3 {
+    margin-top: 0;
+}
+
+.transcription-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.btn-download {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.btn-download:hover {
+    background-color: #218838;
+}
+
+.transcription-actions button,
+.transcription-actions a.btn,
+.transcription-actions a.btn-download {
+    height: 40px;
+    margin: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 12px;
+}
+
+.transcription-actions button,
+.transcription-actions a {
+    text-align: center;
+    width: auto;
+}
+
+.btn-danger,
+.btn-download,
+.btn-primary {
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+.btn {
+    border-radius: 4px;
+    border: none;
+    font-weight: bold;
+}
+
+.search-container {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.search-form {
+    display: inline-block;
+    position: relative;
+}
+
+.search-input {
+    padding: 8px 20px;
+    border: 1px solid #ccc;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+}
+
+.search-button {
+    padding: 8px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+.form-group input,
+.search-input {
+    width: auto;
+    display: inline-block;
+}
+
+.search-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.search-form {
+    display: inline-flex;
+    border: 2px solid #007bff;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.search-input {
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    flex-grow: 1;
+}
+
+.search-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.search-form * {
+    align-self: center;
+}
+
+th {
+    text-align: center;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.add-transcription-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-transcription-form input,
+.add-transcription-form button {
+    margin: 0 5px;
+}
+
+.frem {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url('/static/img/404.gif') center no-repeat;
+}
+
+.frem p {
+    position: absolute;
+    top: 3rem;
+    font-size: 7rem;
+    color: #00000063;
+}
+
+.frem h2 {
+    position: absolute;
+    bottom: 8rem;
+    font-size: 34px;
+}
+
+.frem h5 {
+    position: absolute;
+    bottom: 6rem;
+    color: #9c9c9c;
+}
+
+.frem a {
+    position: absolute;
+    bottom: 1rem;
+    background-color: #007bff;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 23px;
+    border-radius: 13px;
+}
